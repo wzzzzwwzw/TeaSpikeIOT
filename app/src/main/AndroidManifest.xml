@@ -24,6 +24,8 @@
         <activity android:name=".User.AllCategories" />
         <activity android:name=".Common.OnBoarding" />
         <activity android:name=".User.UserDashboard" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".NewTelemetryActivity"/>
         <activity android:name=".Common.SplashScreen"
             android:exported="true">
             <intent-filter>

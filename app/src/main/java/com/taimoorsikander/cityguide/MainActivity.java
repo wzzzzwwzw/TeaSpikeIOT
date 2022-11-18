@@ -3,6 +3,8 @@ package com.taimoorsikander.cityguide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -30,6 +32,7 @@ import com.taimoorsikander.cityguide.pojo.Sensors;
 import com.taimoorsikander.cityguide.pojo.SoilTemp1;
 import com.taimoorsikander.cityguide.pojo.SoilTemp2;
 import com.taimoorsikander.cityguide.pojo.Temperature;
+import com.taimoorsikander.cityguide.utils.CSVReader;
 import com.taimoorsikander.cityguide.views.TelemetriasListAdapter;
 
 import java.io.IOException;
@@ -38,8 +41,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
-
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -133,8 +134,72 @@ public class MainActivity extends AppCompatActivity {
         helper.attachToRecyclerView(recyclerView);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_delete_all:
+                Log.i(LOG_TAG, "opción=" + getString(R.string.menu_delete_all));
+                telemetriaViewModel.deleteAll();
+                break;
+            case R.id.item_count:
+                Toast.makeText(this,
+                        getString(R.string.menu_count)+" "+telemetriaViewModel.count(),
+                        Toast.LENGTH_LONG).show();
+                Log.i(LOG_TAG, "opción="
+                        + getString(R.string.menu_count)
+                        +" "+telemetriaViewModel.count());
+                break;
+            case R.id.item_load_ws:
+                Toast.makeText(this,
+                        "Cargar datos de WS",
+                        Toast.LENGTH_LONG).show();
+
+                //postBearerToken();
+                getTelemetries();
+                //getLastTelemetry();
 
 
+                break;
+            case R.id.item_load_csv:
+                Log.i(LOG_TAG, "opción=" + getString(R.string.menu_load_csv));
+
+                List<String[]> rows = new ArrayList<>();
+                CSVReader csvReader = new CSVReader(this, "telemetrias.csv");
+                ArrayList<String> lst = new ArrayList<String>();
+                try {
+                    rows = csvReader.readCSV();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                for (int i = 0; i < rows.size()-1; i++) {
+                    TelemetriaEntity tmItem =  new TelemetriaEntity((String)rows.get(i)[0],
+                            Integer.parseInt(rows.get(i)[1]),
+                            Integer.parseInt(rows.get(i)[2]),
+                            Integer.parseInt(rows.get(i)[3]),
+                            Integer.parseInt(rows.get(i)[4]),
+                            Integer.parseInt(rows.get(i)[5]),
+                            Integer.parseInt(rows.get(i)[6])
+                    );
+                    telemetriaViewModel.insert(tmItem);
+                }
+                Log.i(LOG_TAG, "Inserted "+rows.size()+" items from CSV");
+                Toast.makeText(this,
+                        "Inserted "+rows.size()+" items into DB",
+                        Toast.LENGTH_LONG).show();
+
+                break;
+            default:
+                Log.i(LOG_TAG, "Opción desconocida");
+        }
+        return true;
+    }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -288,7 +353,10 @@ public class MainActivity extends AppCompatActivity {
                     List<Temperature> lTem = responseFromAPI.getTemperature();
 
 
-                    DateFormat df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                    DateFormat df = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                    }
                     for (int i = 0; i < lCo2.size()-1; i++) {
 
                         Date currentDate = new Date(lCo2.get(i).getTs());

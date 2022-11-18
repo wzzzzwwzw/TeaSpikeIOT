@@ -7,8 +7,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.taimoorsikander.cityguide.Common.LoginSignup.Login;
 import com.taimoorsikander.cityguide.Common.LoginSignup.RetailerStartUpScreen;
 import com.taimoorsikander.cityguide.Databases.SessionManager;
+import com.taimoorsikander.cityguide.MainActivity;
 import com.taimoorsikander.cityguide.R;
 
 import java.util.HashMap;
@@ -50,5 +52,12 @@ public class RetailerDashboard extends AppCompatActivity {
         sessionManager.logoutUserFromSession();
         startActivity(new Intent(getApplicationContext(), RetailerStartUpScreen.class));
         finish();
+    }
+    public void RedirectToTelemetry(View view) {
+
+        startActivity((new Intent(getApplicationContext(), MainActivity.class)));
+        finish();
+
+
     }
 }
