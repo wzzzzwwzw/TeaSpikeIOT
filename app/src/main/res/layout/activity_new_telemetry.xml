@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/etTimestamp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_timestamp"
+        android:inputType="datetime"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="25sp" />
+
+
+    <EditText
+        android:id="@+id/etCO2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_co2"
+        android:inputType="number"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="18sp" />
+
+    <EditText
+        android:id="@+id/etHumid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_humidity"
+        android:inputType="number"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="25sp" />
+
+    <EditText
+        android:id="@+id/etLux"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_light"
+        android:inputType="number"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="18sp" />
+
+
+    <EditText
+        android:id="@+id/etSoilTem1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_soiltemp1"
+        android:inputType="number"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="50sp" />
+
+    <EditText
+        android:id="@+id/etSoilTem2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_soiltemp2"
+        android:inputType="number"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="25sp" />
+
+
+    <EditText
+        android:id="@+id/etTemp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:hint="@string/hint_ambtemp"
+        android:inputType="number"
+        android:padding="@dimen/small_padding"
+        android:layout_marginBottom="@dimen/small_padding"
+        android:layout_marginTop="@dimen/small_padding"
+        android:textSize="25sp" />
+
+    <Button
+        android:id="@+id/button_save"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_save"
+        android:textColor="@color/buttonLabel" />
+
+</LinearLayout>

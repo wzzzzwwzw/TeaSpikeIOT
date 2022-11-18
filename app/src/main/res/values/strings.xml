@@ -104,4 +104,20 @@
     <string name="verify_code">Verify Code</string>
     <string name="todo">TODO</string>
 
+
+    <string name="menu_delete_all">Borrar BD</string>
+    <string name="menu_load_csv">Cargar CSV en BD</string>
+    <string name="menu_load_ws">Cargar WS en BD</string>
+    <string name="menu_count">Contar items BD</string>
+    <string name="empty_not_saved">Campos incompletos. No guardado</string>
+    <string name="hint_timestamp">YYYY-MM-DD HH:MI:SS</string>
+    <string name="hint_co2">CO2 in parts per million</string>
+    <string name="hint_humidity">Humidity in percentage %</string>
+    <string name="hint_light">Light in lux</string>
+    <string name="hint_soiltemp1">Soil temperature in ºC</string>
+    <string name="hint_soiltemp2">Soil temperature in ºC</string>
+    <string name="hint_ambtemp">Ambient temperature in ºC</string>
+
+    <string name="button_save">Añadir</string>
+
 </resources>

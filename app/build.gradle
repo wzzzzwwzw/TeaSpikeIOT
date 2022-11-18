@@ -43,8 +43,23 @@ dependencies {
     implementation 'com.google.android.material:material:1.7.0'
     implementation 'com.hbb20:ccp:2.3.1'
     implementation 'androidx.browser:browser:1.4.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.5.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
 
+    // Room dependencies
+    def room_version = "2.2.5"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-guava:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
 
+    // Retrofit dependencies
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
     //OTP PIN View Design
     implementation 'com.chaos.view:pinview:1.4.3'
 }
