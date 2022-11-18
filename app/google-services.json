@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "234145605053",
+    "firebase_url": "https://demoo-fcdff-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "demoo-fcdff",
+    "storage_bucket": "demoo-fcdff.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234145605053:android:b2ac6cf278b4d443665ed4",
+        "android_client_info": {
+          "package_name": "com.taimoorsikander.cityguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234145605053-kiuic77oe0sqr4tsusuagh16v1cd8c60.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAxBmoffavcPPLwydEjix3YBiBMqIroVXE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234145605053-kiuic77oe0sqr4tsusuagh16v1cd8c60.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
