@@ -10,9 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -42,6 +40,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
@@ -80,12 +79,7 @@ public class TelemetryActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         telemetriaViewModel = ViewModelProviders.of(this).get(TelemetriaViewModel.class);
-        telemetriaViewModel.getAll().observe(this, new Observer<List<TelemetriaEntity>>() {
-            @Override
-            public void onChanged(@Nullable final List<TelemetriaEntity> listTelemetriaEntity) {
-                adapter.setItems(listTelemetriaEntity);
-            }
-        });
+        telemetriaViewModel.getAll().observe(this, listTelemetriaEntity -> adapter.setItems(listTelemetriaEntity));
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +136,7 @@ public class TelemetryActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("NonConstantResourceId")
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
