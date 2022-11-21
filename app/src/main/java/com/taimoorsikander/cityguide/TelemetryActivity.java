@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.taimoorsikander.cityguide.LocationOwner.RetailerDashboard;
 import com.taimoorsikander.cityguide.device.ISpikeRESTAPIService;
 import com.taimoorsikander.cityguide.models.TelemetriaEntity;
 import com.taimoorsikander.cityguide.models.TelemetriaViewModel;
@@ -86,6 +87,14 @@ public class TelemetryActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(TelemetryActivity.this, NewTelemetryActivity.class);
+                startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE);
+            }
+        });
+        FloatingActionButton fab2 = findViewById(R.id.fab2);
+        fab2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(TelemetryActivity.this,RetailerDashboard.class);
                 startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -192,6 +201,7 @@ public class TelemetryActivity extends AppCompatActivity {
                         Toast.LENGTH_LONG).show();
 
                 break;
+
             default:
                 Log.i(LOG_TAG, "Opción desconocida");
         }
@@ -384,6 +394,13 @@ public class TelemetryActivity extends AppCompatActivity {
                 Log.e(LOG_TAG, " error message: "+t.getMessage());
             }
         });
+
+    }
+    public void RedirectToTelemetryFromCsv(View view) {
+
+        startActivity((new Intent(getApplicationContext(), TelemetryActivity.class)));
+        finish();
+
 
     }
 }
