@@ -50,7 +50,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class TelemetryActivity extends AppCompatActivity {
 
     static String LOG_TAG = "btb";
     public static final int NEW_ACTIVITY_REQUEST_CODE = 2022;
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, NewTelemetryActivity.class);
+                Intent intent = new Intent(TelemetryActivity.this, NewTelemetryActivity.class);
                 startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -249,7 +249,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<AuthorizationBearer>() {
             @Override
             public void onResponse(Call<AuthorizationBearer> call, Response<AuthorizationBearer> response) {
-                Toast.makeText(MainActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TelemetryActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
                 AuthorizationBearer responseFromAPI = response.body();
                 String responseString = "Response Code : " + response.code() + "\nToken : " + responseFromAPI.getToken() + "\n" + "RefreshToken : " + responseFromAPI.getRefreshToken();
                 Log.i(LOG_TAG, " response: "+responseString);
@@ -290,7 +290,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Measurement>() {
             @Override
             public void onResponse(Call<Measurement> call, Response<Measurement> response) {
-                Toast.makeText(MainActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TelemetryActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
                 Measurement lm = response.body();
 
                 String responseString = "Response Code : " + response.code();
@@ -338,7 +338,7 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<Sensors>() {
             @Override
             public void onResponse(Call<Sensors> call, Response<Sensors> response) {
-                Toast.makeText(MainActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TelemetryActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
                 Sensors responseFromAPI = response.body();
                 String responseString = "Response Code : " + response.code();
                 Log.i(LOG_TAG, " response: "+responseString);
