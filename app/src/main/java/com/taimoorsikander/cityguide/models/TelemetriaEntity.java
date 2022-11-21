@@ -11,7 +11,7 @@ public class TelemetriaEntity {
     static public final String TABLA = "telemetrias";
 
     @PrimaryKey(autoGenerate = true)
-    protected int uid;
+    public int uid;
 
     protected String timestamp;
     protected int co2;
