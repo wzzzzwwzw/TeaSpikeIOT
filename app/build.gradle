@@ -65,5 +65,6 @@ dependencies {
 
 
     implementation 'com.google.code.gson:gson:2.10'
+    implementation "android.arch.lifecycle:viewmodel:1.1.1"
 
 }
