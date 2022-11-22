@@ -1,5 +1,7 @@
 package com.taimoorsikander.cityguide;
 
+import static java.io.File.separator;
+
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +13,11 @@ import android.widget.Toast;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
@@ -167,9 +174,24 @@ public class TeaSpikeActivity extends Activity {
                     List<SoilTemp2> lST2 = sensorsList.getSoilTemp2();
                     List<Temperature> lTem = sensorsList.getTemperature();
 
-                    for (int i=0;i<lCo2.size()-1;i++) {
+                    DateFormat df = null;
+                    if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                        df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
+                    }
 
+                    for (int i=0;i<lCo2.size()-1 - lCo2.size()+2;i++) {
+                        Date currentDate = new Date(lCo2.get(i).getTs());
+                        String sTs = df.format(currentDate);
+                        tvRespuesta.append(sTs);
+                        tvRespuesta.append(separator);
                         tvRespuesta.append( ".[Co2 : " +lCo2.get(i).getTs() + "] "+"|"+String.valueOf(lCo2.get(i).getValue())+"]");
+                       // tvRespuesta.append( ".[Humidity : " + lHum.get(i).getTs() +"] "+"|"+String.valueOf(lHum.get(i).getValue())+"]");
+                       // tvRespuesta.append( ".[Light: " + lLig.get(i).getTs() +"] "+"|"+String.valueOf(lLig.get(i).getValue())+"]");
+                        //tvRespuesta.append( ".[SoilTemp1 : " + lST1.get(i).getTs() +"] "+"|"+String.valueOf(lST1.get(i).getValue())+"]");
+                      //  tvRespuesta.append( ".[SoilTemp2 : " + lST2.get(i).getTs() +"] "+"|"+String.valueOf(lST2.get(i).getValue())+"]");
+                        //tvRespuesta.append( ".[Temperature : " + lTem.get(i).getTs() +"] "+"|"+String.valueOf(lTem.get(i).getValue())+"]");
+
+
 
                     }
 
