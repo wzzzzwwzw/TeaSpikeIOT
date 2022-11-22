@@ -121,4 +121,10 @@
     <string name="button_save">Añadir</string>
     <string name="name_wael_louati_n_name_wael_louati">Name: Wael Louati \n Name: Wael Louati</string>
 
+
+
+
+    <string name="strError">No se ha recuperado ningún país</string>
+    <string name="btnDescripcion">Buscar</string>
+    <string name="btnTodos">Todos</string>
 </resources>

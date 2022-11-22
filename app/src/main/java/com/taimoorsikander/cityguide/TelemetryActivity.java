@@ -94,7 +94,7 @@ public class TelemetryActivity extends AppCompatActivity {
         fab2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(TelemetryActivity.this,RetailerDashboard.class);
+                Intent intent = new Intent(TelemetryActivity.this,TeaSpikeActivity.class);
                 startActivityForResult(intent, NEW_ACTIVITY_REQUEST_CODE);
             }
         });
@@ -301,6 +301,7 @@ public class TelemetryActivity extends AppCompatActivity {
                 String responseString = "Response Code : " + response.code();
                 Log.i(LOG_TAG, " response: "+responseString);
                 Log.i(LOG_TAG, " response.body: "+lm.getCo2().get(0).getValue());
+                Log.i(LOG_TAG,"response.body: "+lm.getHumidity().get(0).getValue());
             }
 
             @Override
@@ -398,7 +399,7 @@ public class TelemetryActivity extends AppCompatActivity {
     }
     public void RedirectToTelemetryFromCsv(View view) {
 
-        startActivity((new Intent(getApplicationContext(), TelemetryActivity.class)));
+        startActivity((new Intent(getApplicationContext(), TeaSpikeActivity.class)));
         finish();
 
 
