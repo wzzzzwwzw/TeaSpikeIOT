@@ -399,8 +399,7 @@ public class TelemetryActivity extends AppCompatActivity {
     }
     public void RedirectToTelemetryFromCsv(View view) {
 
-        startActivity((new Intent(getApplicationContext(), TeaSpikeActivity.class)));
-        finish();
+
 
 
     }

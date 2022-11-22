@@ -100,5 +100,13 @@
         android:background="@color/colorPrimary"
         android:text="@string/button_save"
         android:textColor="@color/buttonLabel" />
+    <Button
+        android:id="@+id/button_return"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:text="@string/button_return"
+        android:onClick="Return"
+        android:textColor="@color/buttonLabel" />
 
 </LinearLayout>

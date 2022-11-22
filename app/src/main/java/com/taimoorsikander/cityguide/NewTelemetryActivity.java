@@ -3,6 +3,7 @@ package com.taimoorsikander.cityguide;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -53,6 +54,11 @@ public class NewTelemetryActivity extends AppCompatActivity {
             }
             finish();
         });
+
+    }
+    public void Return(View view){
+        Intent i = new Intent(NewTelemetryActivity.this,TelemetryActivity.class);
+        startActivity(i);
     }
 
 }

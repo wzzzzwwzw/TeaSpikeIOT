@@ -128,4 +128,5 @@
     <string name="btnDescripcion">Get Last Telemetry</string>
     <string name="btnTodos">Get All Telemetries</string>
     <string name="ClearButton">Clear</string>
+    <string name="button_return">Return</string>
 </resources>
