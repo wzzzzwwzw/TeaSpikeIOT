@@ -2,6 +2,7 @@ package com.taimoorsikander.cityguide;
 
 import static java.io.File.separator;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,7 @@ import com.taimoorsikander.cityguide.models.TelemetriaViewModel;
 import com.taimoorsikander.cityguide.pojo.Co2;
 import com.taimoorsikander.cityguide.pojo.Humidity;
 import com.taimoorsikander.cityguide.pojo.Light;
+import com.taimoorsikander.cityguide.pojo.Measurement;
 import com.taimoorsikander.cityguide.pojo.Sensors;
 import com.taimoorsikander.cityguide.pojo.SoilTemp1;
 import com.taimoorsikander.cityguide.pojo.SoilTemp2;
@@ -179,18 +181,17 @@ public class TeaSpikeActivity extends Activity {
                         df = new SimpleDateFormat("YYYY-MM-dd HH:mm:ss");
                     }
 
-                    for (int i=0;i<lCo2.size()-1 - lCo2.size()+2;i++) {
+                    for (int i = 0; i < lCo2.size() - 1 - lCo2.size() + 2; i++) {
                         Date currentDate = new Date(lCo2.get(i).getTs());
                         String sTs = df.format(currentDate);
                         tvRespuesta.append(sTs);
                         tvRespuesta.append(separator);
-                        tvRespuesta.append( ".[Co2 : " +lCo2.get(i).getTs() + "] "+"|"+String.valueOf(lCo2.get(i).getValue())+"]");
-                       // tvRespuesta.append( ".[Humidity : " + lHum.get(i).getTs() +"] "+"|"+String.valueOf(lHum.get(i).getValue())+"]");
-                       // tvRespuesta.append( ".[Light: " + lLig.get(i).getTs() +"] "+"|"+String.valueOf(lLig.get(i).getValue())+"]");
+                        tvRespuesta.append(".[Co2 : " + lCo2.get(i).getTs() + "] " + "|" + String.valueOf(lCo2.get(i).getValue()) + "]");
+                        // tvRespuesta.append( ".[Humidity : " + lHum.get(i).getTs() +"] "+"|"+String.valueOf(lHum.get(i).getValue())+"]");
+                        // tvRespuesta.append( ".[Light: " + lLig.get(i).getTs() +"] "+"|"+String.valueOf(lLig.get(i).getValue())+"]");
                         //tvRespuesta.append( ".[SoilTemp1 : " + lST1.get(i).getTs() +"] "+"|"+String.valueOf(lST1.get(i).getValue())+"]");
-                      //  tvRespuesta.append( ".[SoilTemp2 : " + lST2.get(i).getTs() +"] "+"|"+String.valueOf(lST2.get(i).getValue())+"]");
+                        //  tvRespuesta.append( ".[SoilTemp2 : " + lST2.get(i).getTs() +"] "+"|"+String.valueOf(lST2.get(i).getValue())+"]");
                         //tvRespuesta.append( ".[Temperature : " + lTem.get(i).getTs() +"] "+"|"+String.valueOf(lTem.get(i).getValue())+"]");
-
 
 
                     }
@@ -212,6 +213,63 @@ public class TeaSpikeActivity extends Activity {
             }
         });
 
+
+    }
+
+    public void getLastTelemetry(View V) {
+        String keys = "co2,humidity,light,soilTemp1,soilTemp2,temperature";
+        String useStrictDataTypes = "false";
+
+
+        HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
+        httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        OkHttpClient client = new OkHttpClient.Builder()
+                .addInterceptor(httpLoggingInterceptor)
+                .build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .client(client)
+                .baseUrl(API_BASE_GET)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ISpikeRESTAPIService iApi = retrofit.create(ISpikeRESTAPIService.class);
+        Log.i(LOG_TAG, " request params: |" + BEARER_TOKEN + "|" + DEVICE_ID + "|" + keys + "|" + useStrictDataTypes);
+        Call<Measurement> call = iApi.getLastTelemetry(BEARER_TOKEN, DEVICE_ID, keys, useStrictDataTypes);
+
+
+        call.enqueue(new Callback<Measurement>() {
+            @Override
+            public void onResponse(Call<Measurement> call, Response<Measurement> response) {
+                Toast.makeText(TeaSpikeActivity.this, "Data posted to API", Toast.LENGTH_SHORT).show();
+                Measurement lm = response.body();
+                assert lm != null;
+                List<Co2> lCo2 = lm.getCo2();
+                String responseString = "Response Code : " + response.code();
+
+                Log.i(LOG_TAG, " response: " + responseString);
+                @SuppressLint("SimpleDateFormat") DateFormat df = null;
+                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                    df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                }
+
+                Date currentDate = new Date(lCo2.get(0).getTs());
+                String sTs = df.format(currentDate);
+
+                tvRespuesta.append(sTs);
+                tvRespuesta.append(separator);
+               // tvRespuesta.append(lm.getCo2().get(0).getTs().toString());
+                tvRespuesta.append(lm.getCo2().get(0).getValue());
+                Log.i(LOG_TAG, " response.body: " + lm.getCo2().get(0).getValue());
+
+
+            }
+
+            @Override
+            public void onFailure(Call<Measurement> call, Throwable t) {
+                Log.e(LOG_TAG, " error message: " + t.getMessage());
+            }
+        });
 
     }
 }

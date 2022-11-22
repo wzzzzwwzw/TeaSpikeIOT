@@ -28,9 +28,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_search"
+            android:src="@android:drawable/ic_dialog_info"
             android:contentDescription="@string/btnDescripcion"
-            android:onClick="getCountryByName" />
+            android:onClick="getLastTelemetry" />
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
