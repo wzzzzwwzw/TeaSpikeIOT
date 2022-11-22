@@ -4,6 +4,9 @@ import static java.io.File.separator;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
+import java.util.function.Supplier;
 
 
 import javax.net.ssl.HostnameVerifier;
@@ -40,7 +44,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
-import com.squareup.picasso.Picasso;
 import com.taimoorsikander.cityguide.device.ISpikeRESTAPIService;
 import com.taimoorsikander.cityguide.models.TelemetriaViewModel;
 import com.taimoorsikander.cityguide.pojo.Co2;
@@ -59,7 +62,7 @@ public class TeaSpikeActivity extends Activity {
     private ISpikeRESTAPIService apiService;
     private static final String API_LOGIN_POST = "https://thingsboard.cloud/api/auth/"; // Base url to obtain token
     private static final String API_BASE_GET = "https://thingsboard.cloud:443/api/plugins/telemetry/DEVICE/"; // Base url to obtain data
-    private static final String TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHVkZW50dXBtMjAyMkBnbWFpbC5jb20iLCJ1c2VySWQiOiI4NDg1OTU2MC00NzU2LTExZWQtOTQ1YS1lOWViYTIyYjlkZjYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sImlzcyI6InRoaW5nc2JvYXJkLmNsb3VkIiwiaWF0IjoxNjY5MTA1NTc5LCJleHAiOjE2NjkxMzQzNzksImZpcnN0TmFtZSI6IlN0dWRlbnQiLCJsYXN0TmFtZSI6IlVQTSIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwiaXNCaWxsaW5nU2VydmljZSI6ZmFsc2UsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwidGVybXNPZlVzZUFjY2VwdGVkIjp0cnVlLCJ0ZW5hbnRJZCI6ImUyZGQ2NTAwLTY3OGEtMTFlYi05MjJjLWY3NDAyMTlhYmNiOCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAifQ.rLGxjzLMufOa63g38AV9hQKv6f6HAFyOWem3gXv8X7_zKxXPVaDIyXRVDH2soyIyNFo-id5dEGV3MKXufms1XQ";
+    private static final String TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHVkZW50dXBtMjAyMkBnbWFpbC5jb20iLCJ1c2VySWQiOiI4NDg1OTU2MC00NzU2LTExZWQtOTQ1YS1lOWViYTIyYjlkZjYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sImlzcyI6InRoaW5nc2JvYXJkLmNsb3VkIiwiaWF0IjoxNjY5MTE5ODA0LCJleHAiOjE2NjkxNDg2MDQsImZpcnN0TmFtZSI6IlN0dWRlbnQiLCJsYXN0TmFtZSI6IlVQTSIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwiaXNCaWxsaW5nU2VydmljZSI6ZmFsc2UsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwidGVybXNPZlVzZUFjY2VwdGVkIjp0cnVlLCJ0ZW5hbnRJZCI6ImUyZGQ2NTAwLTY3OGEtMTFlYi05MjJjLWY3NDAyMTlhYmNiOCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAifQ.kxXcPGYEuPAnqt6SDeMb1RvzZvo2c51fagZG4Pjh_nvwqOubooL6AWnyvi0D3VoPgcX1e92x1_3ytHo_ELSRgg";
     private static final String BEARER_TOKEN = "Bearer " + TOKEN;
     private static final String DEVICE_ID = "cf87adf0-dc76-11ec-b1ed-e5d3f0ce866e";
     private static final String USER_THB = "studentupm2022@gmail.com";
@@ -71,7 +74,6 @@ public class TeaSpikeActivity extends Activity {
 
     private TextView tvRespuesta;
     private ImageView ivRespuesta;
-    private EditText etCountryName;
 
 
     @Override
@@ -188,8 +190,6 @@ public class TeaSpikeActivity extends Activity {
                         tvRespuesta.append(sTs);
                         tvRespuesta.append(separator);
                         tvRespuesta.append(".[Co2 : " + lCo2.get(i).getTs() + "] " + "|" + String.valueOf(lCo2.get(i).getValue()) + "]");
-                        String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
-                        Picasso.get().load(imageUri).into(ivRespuesta);
                         tvRespuesta.append(".[Humidity : " + lHum.get(i).getTs() + "] " + "|" + String.valueOf(lHum.get(i).getValue()) + "]");
                         tvRespuesta.append(".[Light: " + lLig.get(i).getTs() + "] " + "|" + String.valueOf(lLig.get(i).getValue()) + "]");
                         tvRespuesta.append(".[SoilTemp1 : " + lST1.get(i).getTs() + "] " + "|" + String.valueOf(lST1.get(i).getValue()) + "]");
@@ -253,14 +253,12 @@ public class TeaSpikeActivity extends Activity {
 
                 Log.i(LOG_TAG, " response: " + responseString);
                 @SuppressLint("SimpleDateFormat") DateFormat df = null;
-                if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                     df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
                 }
 
                 Date currentDate = new Date(lCo2.get(0).getTs());
                 String sTs = df.format(currentDate);
-                String imageUri = "https://.pngtree.com/so/Ilustración'";
-                Picasso.get().load(imageUri).into(ivRespuesta);
                 tvRespuesta.append("timestamp : " + sTs + "\n");
                 tvRespuesta.append(separator);
                 tvRespuesta.append("Co2 : " + lm.getCo2().get(0).getValue() + "\n" +
@@ -268,7 +266,7 @@ public class TeaSpikeActivity extends Activity {
                         " Light : " + lm.getLight().get(0).getValue() + "\n" +
                         " Temperature  : " + lm.getTemperature().get(0).getValue() + "\n" +
                         " SoilTemp1 : " + lm.getSoilTemp1().get(0).getValue() + "\n" +
-                        " SoilTemp2 : " + lm.getSoilTemp2().get(0).getValue()+"\n")
+                        " SoilTemp2 : " + lm.getSoilTemp2().get(0).getValue() + "\n")
                 ;
 
                 Log.i(LOG_TAG, " response.body: " + lm.getCo2().get(0).getValue());

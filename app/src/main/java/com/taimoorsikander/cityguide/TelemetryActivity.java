@@ -269,7 +269,7 @@ public class TelemetryActivity extends AppCompatActivity {
         });
     }
 
-    private void getLastTelemetry() {
+    /*private void getLastTelemetry() {
         //https://thingsboard.cloud:443/api/plugins/telemetry/DEVICE/{{deviceId}}/values/timeseries?keys=co2&useStrictDataTypes=false
         String keys = "co2,humidity,light,soilTemp1,soilTemp2,temperature";
         String useStrictDataTypes = "false";
@@ -310,7 +310,7 @@ public class TelemetryActivity extends AppCompatActivity {
             }
         });
 
-    }
+    }*/
 
 
     private void getTelemetries() {

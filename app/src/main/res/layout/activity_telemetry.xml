@@ -22,6 +22,6 @@
         android:layout_gravity="bottom"
         android:layout_margin="@dimen/fab_margin"
         android:background="@color/black"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        app:srcCompat="@android:drawable/arrow_up_float" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
