@@ -64,6 +64,7 @@ dependencies {
     implementation 'com.chaos.view:pinview:1.4.3'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
 
     implementation 'com.google.code.gson:gson:2.10'
     implementation "android.arch.lifecycle:viewmodel:1.1.1"

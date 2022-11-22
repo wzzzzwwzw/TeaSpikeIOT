@@ -8,6 +8,10 @@ import java.util.List;
 
 public class Sensors {
 
+    @SerializedName("png")
+    @Expose
+    private String png;
+
     @SerializedName("co2")
     @Expose
     private List<Co2> co2 = null;
@@ -34,6 +38,16 @@ public class Sensors {
     public Sensors() {
     }
 
+    public Sensors(String png, List<Co2> co2, List<Humidity> humidity, List<Light> light, List<SoilTemp1> soilTemp1, List<SoilTemp2> soilTemp2, List<Temperature> temperature) {
+        this.png = png;
+        this.co2 = co2;
+        this.humidity = humidity;
+        this.light = light;
+        this.soilTemp1 = soilTemp1;
+        this.soilTemp2 = soilTemp2;
+        this.temperature = temperature;
+    }
+
     /**
      * 
      * @param light
@@ -51,6 +65,14 @@ public class Sensors {
         this.soilTemp1 = soilTemp1;
         this.soilTemp2 = soilTemp2;
         this.temperature = temperature;
+    }
+
+    public String getPng() {
+        return png;
+    }
+
+    public void setPng(String png) {
+        this.png = png;
     }
 
     public List<Co2> getCo2() {

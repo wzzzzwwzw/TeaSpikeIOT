@@ -40,6 +40,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 
+import com.squareup.picasso.Picasso;
 import com.taimoorsikander.cityguide.device.ISpikeRESTAPIService;
 import com.taimoorsikander.cityguide.models.TelemetriaViewModel;
 import com.taimoorsikander.cityguide.pojo.Co2;
@@ -184,9 +185,13 @@ public class TeaSpikeActivity extends Activity {
                     for (int i = 0; i < lCo2.size() - 1 - lCo2.size() + 2; i++) {
                         Date currentDate = new Date(lCo2.get(i).getTs());
                         String sTs = df.format(currentDate);
+                        Sensors sensors = null;
                         tvRespuesta.append(sTs);
                         tvRespuesta.append(separator);
                         tvRespuesta.append(".[Co2 : " + lCo2.get(i).getTs() + "] " + "|" + String.valueOf(lCo2.get(i).getValue()) + "]");
+                        String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
+                        Picasso.get().load(imageUri).into(ivRespuesta);
+
                         // tvRespuesta.append( ".[Humidity : " + lHum.get(i).getTs() +"] "+"|"+String.valueOf(lHum.get(i).getValue())+"]");
                         // tvRespuesta.append( ".[Light: " + lLig.get(i).getTs() +"] "+"|"+String.valueOf(lLig.get(i).getValue())+"]");
                         //tvRespuesta.append( ".[SoilTemp1 : " + lST1.get(i).getTs() +"] "+"|"+String.valueOf(lST1.get(i).getValue())+"]");
@@ -258,7 +263,7 @@ public class TeaSpikeActivity extends Activity {
 
                 tvRespuesta.append(sTs);
                 tvRespuesta.append(separator);
-               // tvRespuesta.append(lm.getCo2().get(0).getTs().toString());
+                // tvRespuesta.append(lm.getCo2().get(0).getTs().toString());
                 tvRespuesta.append(lm.getCo2().get(0).getValue());
                 Log.i(LOG_TAG, " response.body: " + lm.getCo2().get(0).getValue());
 
