@@ -16,19 +16,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
-        <EditText
-            android:id="@+id/countryName"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="6"
-            android:inputType="text"
-            android:labelFor="@id/countryName"
-            android:maxLines="1" />
+
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_dialog_info"
+            android:src="@android:drawable/ic_menu_info_details"
             android:contentDescription="@string/btnDescripcion"
             android:onClick="getLastTelemetry" />
         <ImageButton
@@ -55,6 +48,16 @@
         android:id="@+id/ivRespuesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <ImageButton
+        android:id="@+id/ClearButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/ClearButton"
+        android:minWidth="48dp"
+        android:minHeight="48dp"
+        android:onClick="clear"
+        android:text="@string/ClearButton" />
 
 
 </LinearLayout>

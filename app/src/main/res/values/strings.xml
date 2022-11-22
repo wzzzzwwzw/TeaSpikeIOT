@@ -124,7 +124,8 @@
 
 
 
-    <string name="strError">No se ha recuperado ningún país</string>
-    <string name="btnDescripcion">Buscar</string>
-    <string name="btnTodos">Todos</string>
+    <string name="strError">no Sensors available</string>
+    <string name="btnDescripcion">Get Last Telemetry</string>
+    <string name="btnTodos">Get All Telemetries</string>
+    <string name="ClearButton">Clear</string>
 </resources>

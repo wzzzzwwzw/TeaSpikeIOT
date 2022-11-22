@@ -59,7 +59,7 @@ public class TeaSpikeActivity extends Activity {
     private ISpikeRESTAPIService apiService;
     private static final String API_LOGIN_POST = "https://thingsboard.cloud/api/auth/"; // Base url to obtain token
     private static final String API_BASE_GET = "https://thingsboard.cloud:443/api/plugins/telemetry/DEVICE/"; // Base url to obtain data
-    private static final String TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHVkZW50dXBtMjAyMkBnbWFpbC5jb20iLCJ1c2VySWQiOiI4NDg1OTU2MC00NzU2LTExZWQtOTQ1YS1lOWViYTIyYjlkZjYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sImlzcyI6InRoaW5nc2JvYXJkLmNsb3VkIiwiaWF0IjoxNjY5MDQ4NjMzLCJleHAiOjE2NjkwNzc0MzMsImZpcnN0TmFtZSI6IlN0dWRlbnQiLCJsYXN0TmFtZSI6IlVQTSIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwiaXNCaWxsaW5nU2VydmljZSI6ZmFsc2UsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwidGVybXNPZlVzZUFjY2VwdGVkIjp0cnVlLCJ0ZW5hbnRJZCI6ImUyZGQ2NTAwLTY3OGEtMTFlYi05MjJjLWY3NDAyMTlhYmNiOCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAifQ.9l7yblXyV_cx0bCoZed-9ZE14PFo2bLOMPrZi9cI_NdQwN2xG66uN4EAKajKndncxtOZB2kVJn39PTZGZyuDzw";
+    private static final String TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzdHVkZW50dXBtMjAyMkBnbWFpbC5jb20iLCJ1c2VySWQiOiI4NDg1OTU2MC00NzU2LTExZWQtOTQ1YS1lOWViYTIyYjlkZjYiLCJzY29wZXMiOlsiVEVOQU5UX0FETUlOIl0sImlzcyI6InRoaW5nc2JvYXJkLmNsb3VkIiwiaWF0IjoxNjY5MTA1NTc5LCJleHAiOjE2NjkxMzQzNzksImZpcnN0TmFtZSI6IlN0dWRlbnQiLCJsYXN0TmFtZSI6IlVQTSIsImVuYWJsZWQiOnRydWUsImlzUHVibGljIjpmYWxzZSwiaXNCaWxsaW5nU2VydmljZSI6ZmFsc2UsInByaXZhY3lQb2xpY3lBY2NlcHRlZCI6dHJ1ZSwidGVybXNPZlVzZUFjY2VwdGVkIjp0cnVlLCJ0ZW5hbnRJZCI6ImUyZGQ2NTAwLTY3OGEtMTFlYi05MjJjLWY3NDAyMTlhYmNiOCIsImN1c3RvbWVySWQiOiIxMzgxNDAwMC0xZGQyLTExYjItODA4MC04MDgwODA4MDgwODAifQ.rLGxjzLMufOa63g38AV9hQKv6f6HAFyOWem3gXv8X7_zKxXPVaDIyXRVDH2soyIyNFo-id5dEGV3MKXufms1XQ";
     private static final String BEARER_TOKEN = "Bearer " + TOKEN;
     private static final String DEVICE_ID = "cf87adf0-dc76-11ec-b1ed-e5d3f0ce866e";
     private static final String USER_THB = "studentupm2022@gmail.com";
@@ -80,7 +80,7 @@ public class TeaSpikeActivity extends Activity {
         setContentView(R.layout.activity_tea_spike);
         tvRespuesta = (TextView) findViewById(R.id.tvRespuesta);
         ivRespuesta = (ImageView) findViewById(R.id.ivRespuesta);
-        etCountryName = (EditText) findViewById(R.id.countryName);
+
 
         // btb added for retrofit
         Retrofit retrofit = new Retrofit.Builder()
@@ -185,18 +185,16 @@ public class TeaSpikeActivity extends Activity {
                     for (int i = 0; i < lCo2.size() - 1 - lCo2.size() + 2; i++) {
                         Date currentDate = new Date(lCo2.get(i).getTs());
                         String sTs = df.format(currentDate);
-                        Sensors sensors = null;
                         tvRespuesta.append(sTs);
                         tvRespuesta.append(separator);
                         tvRespuesta.append(".[Co2 : " + lCo2.get(i).getTs() + "] " + "|" + String.valueOf(lCo2.get(i).getValue()) + "]");
                         String imageUri = "https://i.imgur.com/tGbaZCY.jpg";
                         Picasso.get().load(imageUri).into(ivRespuesta);
-
-                        // tvRespuesta.append( ".[Humidity : " + lHum.get(i).getTs() +"] "+"|"+String.valueOf(lHum.get(i).getValue())+"]");
-                        // tvRespuesta.append( ".[Light: " + lLig.get(i).getTs() +"] "+"|"+String.valueOf(lLig.get(i).getValue())+"]");
-                        //tvRespuesta.append( ".[SoilTemp1 : " + lST1.get(i).getTs() +"] "+"|"+String.valueOf(lST1.get(i).getValue())+"]");
-                        //  tvRespuesta.append( ".[SoilTemp2 : " + lST2.get(i).getTs() +"] "+"|"+String.valueOf(lST2.get(i).getValue())+"]");
-                        //tvRespuesta.append( ".[Temperature : " + lTem.get(i).getTs() +"] "+"|"+String.valueOf(lTem.get(i).getValue())+"]");
+                        tvRespuesta.append(".[Humidity : " + lHum.get(i).getTs() + "] " + "|" + String.valueOf(lHum.get(i).getValue()) + "]");
+                        tvRespuesta.append(".[Light: " + lLig.get(i).getTs() + "] " + "|" + String.valueOf(lLig.get(i).getValue()) + "]");
+                        tvRespuesta.append(".[SoilTemp1 : " + lST1.get(i).getTs() + "] " + "|" + String.valueOf(lST1.get(i).getValue()) + "]");
+                        tvRespuesta.append(".[SoilTemp2 : " + lST2.get(i).getTs() + "] " + "|" + String.valueOf(lST2.get(i).getValue()) + "]");
+                        tvRespuesta.append(".[Temperature : " + lTem.get(i).getTs() + "] " + "|" + String.valueOf(lTem.get(i).getValue()) + "]");
 
 
                     }
@@ -220,6 +218,8 @@ public class TeaSpikeActivity extends Activity {
 
 
     }
+
+
 
     public void getLastTelemetry(View V) {
         String keys = "co2,humidity,light,soilTemp1,soilTemp2,temperature";
@@ -263,8 +263,12 @@ public class TeaSpikeActivity extends Activity {
 
                 tvRespuesta.append(sTs);
                 tvRespuesta.append(separator);
-                // tvRespuesta.append(lm.getCo2().get(0).getTs().toString());
                 tvRespuesta.append(lm.getCo2().get(0).getValue());
+                tvRespuesta.append(lm.getHumidity().get(0).getValue());
+                tvRespuesta.append(lm.getLight().get(0).getValue());
+                tvRespuesta.append(lm.getTemperature().get(0).getValue());
+                tvRespuesta.append(lm.getSoilTemp1().get(0).getValue());
+                tvRespuesta.append(lm.getSoilTemp2().get(0).getValue());
                 Log.i(LOG_TAG, " response.body: " + lm.getCo2().get(0).getValue());
 
 
@@ -276,6 +280,10 @@ public class TeaSpikeActivity extends Activity {
             }
         });
 
+    }
+
+    public void clear(View v) {
+        tvRespuesta.setText("");
     }
 }
 
