@@ -220,7 +220,6 @@ public class TeaSpikeActivity extends Activity {
     }
 
 
-
     public void getLastTelemetry(View V) {
         String keys = "co2,humidity,light,soilTemp1,soilTemp2,temperature";
         String useStrictDataTypes = "false";
@@ -260,15 +259,18 @@ public class TeaSpikeActivity extends Activity {
 
                 Date currentDate = new Date(lCo2.get(0).getTs());
                 String sTs = df.format(currentDate);
-
-                tvRespuesta.append(sTs);
+                String imageUri = "https://.pngtree.com/so/Ilustración'";
+                Picasso.get().load(imageUri).into(ivRespuesta);
+                tvRespuesta.append("timestamp : " + sTs + "\n");
                 tvRespuesta.append(separator);
-                tvRespuesta.append(lm.getCo2().get(0).getValue());
-                tvRespuesta.append(lm.getHumidity().get(0).getValue());
-                tvRespuesta.append(lm.getLight().get(0).getValue());
-                tvRespuesta.append(lm.getTemperature().get(0).getValue());
-                tvRespuesta.append(lm.getSoilTemp1().get(0).getValue());
-                tvRespuesta.append(lm.getSoilTemp2().get(0).getValue());
+                tvRespuesta.append("Co2 : " + lm.getCo2().get(0).getValue() + "\n" +
+                        " Humidity : " + lm.getHumidity().get(0).getValue() + "\n" +
+                        " Light : " + lm.getLight().get(0).getValue() + "\n" +
+                        " Temperature  : " + lm.getTemperature().get(0).getValue() + "\n" +
+                        " SoilTemp1 : " + lm.getSoilTemp1().get(0).getValue() + "\n" +
+                        " SoilTemp2 : " + lm.getSoilTemp2().get(0).getValue()+"\n")
+                ;
+
                 Log.i(LOG_TAG, " response.body: " + lm.getCo2().get(0).getValue());
 
 
