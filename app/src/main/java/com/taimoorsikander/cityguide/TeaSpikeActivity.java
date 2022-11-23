@@ -4,13 +4,11 @@ import static java.io.File.separator;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
+
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -19,11 +17,9 @@ import java.security.NoSuchAlgorithmException;
 import java.security.cert.CertificateException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.Date;
 import java.util.List;
-import java.util.function.Supplier;
 
 
 import javax.net.ssl.HostnameVerifier;
@@ -73,6 +69,7 @@ public class TeaSpikeActivity extends Activity {
 
 
     private TextView tvRespuesta;
+    private ImageView color;
     private ImageView ivRespuesta;
 
 
@@ -259,15 +256,42 @@ public class TeaSpikeActivity extends Activity {
 
                 Date currentDate = new Date(lCo2.get(0).getTs());
                 String sTs = df.format(currentDate);
-                tvRespuesta.append("timestamp : " + sTs + "\n");
-                tvRespuesta.append(separator);
-                tvRespuesta.append("Co2 : " + lm.getCo2().get(0).getValue() + "\n" +
-                        " Humidity : " + lm.getHumidity().get(0).getValue() + "\n" +
-                        " Light : " + lm.getLight().get(0).getValue() + "\n" +
-                        " Temperature  : " + lm.getTemperature().get(0).getValue() + "\n" +
-                        " SoilTemp1 : " + lm.getSoilTemp1().get(0).getValue() + "\n" +
-                        " SoilTemp2 : " + lm.getSoilTemp2().get(0).getValue() + "\n")
-                ;
+                tvRespuesta.append("Timestamp : " + sTs + "\n");
+                int numCO2 = Integer.parseInt(lm.getCo2().get(0).getValue());
+                int numHum = Integer.parseInt(lm.getHumidity().get(0).getValue());
+                int numLig = Integer.parseInt(lm.getLight().get(0).getValue());
+                int numTemp = Integer.parseInt(lm.getTemperature().get(0).getValue());
+                int numST1 = Integer.parseInt(lm.getSoilTemp1().get(0).getValue());
+                int numST2 = Integer.parseInt(lm.getSoilTemp2().get(0).getValue());
+                if (numCO2 > 384 || numHum > 45 || numLig >57.15 || numTemp > 24.47 ||
+                     numST1 >21.15 || numST2 >21.56) {
+                    ivRespuesta.setImageResource(R.drawable.co2);
+                    tvRespuesta.append(lm.getCo2().get(0).getValue());
+                    ivRespuesta.setImageResource(R.drawable.co2g);
+
+                }
+                else if (numCO2< 384 || numHum < 45 || numLig <57.15 || numTemp < 24.47 ||
+                        numST1 <21.15 || numST2 <21.56) {
+                    ivRespuesta.setImageResource(R.drawable.co2);
+                    tvRespuesta.append(lm.getCo2().get(0).getValue());
+                    ivRespuesta.setImageResource(R.drawable.co2gred);
+
+                }
+                else {
+
+                }
+
+/*
+                    tvRespuesta.append("Co2 : " + lm.getCo2().get(0).getValue()  +
+
+                            " Humidity : " + lm.getHumidity().get(0).getValue() + "\n" +
+                            " Light : " + lm.getLight().get(0).getValue() + "\n" +
+                            " Temperature  : " + lm.getTemperature().get(0).getValue() + "\n" +
+                            " SoilTemp1 : " + lm.getSoilTemp1().get(0).getValue() + "\n" +
+                            " SoilTemp2 : " + lm.getSoilTemp2().get(0).getValue() + "\n")
+                    ;*/
+
+
 
                 Log.i(LOG_TAG, " response.body: " + lm.getCo2().get(0).getValue());
 

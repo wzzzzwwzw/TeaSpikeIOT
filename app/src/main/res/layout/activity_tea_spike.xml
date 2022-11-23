@@ -21,14 +21,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_info_details"
+            android:src="@android:drawable/ic_input_get"
             android:contentDescription="@string/btnDescripcion"
             android:onClick="getLastTelemetry" />
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_menu_sort_alphabetically"
+            android:src="@android:drawable/ic_input_get"
             android:contentDescription="@string/btnTodos"
             android:onClick="getTelemetries" />
     </LinearLayout>
@@ -37,11 +37,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tvRespuesta"
+        <ImageButton
+            android:id="@+id/ClearButton"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/ClearButton"
+            android:minWidth="48dp"
+            android:minHeight="48dp"
+            android:onClick="clear"
+            android:text="@string/ClearButton" />
     </ScrollView>
 
     <ImageView
@@ -49,15 +53,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageButton
-        android:id="@+id/ClearButton"
+    <TextView
+        android:id="@+id/tvRespuesta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageView
+        android:id="@+id/color"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/ClearButton"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:onClick="clear"
-        android:text="@string/ClearButton" />
+        android:layout_height="wrap_content" />
 
 
 </LinearLayout>
