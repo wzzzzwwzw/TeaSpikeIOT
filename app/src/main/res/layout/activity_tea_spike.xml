@@ -21,16 +21,18 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_input_get"
+            android:src="@drawable/co2g"
             android:contentDescription="@string/btnDescripcion"
             android:onClick="getLastTelemetry" />
         <ImageButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:src="@android:drawable/ic_input_get"
+            android:src="@drawable/sensors"
             android:contentDescription="@string/btnTodos"
-            android:onClick="getTelemetries" />
+            android:onClick="getTelemetries"
+            />
+
     </LinearLayout>
 
     <ScrollView
@@ -45,18 +47,45 @@
             android:minWidth="48dp"
             android:minHeight="48dp"
             android:onClick="clear"
+            android:src="@drawable/ic_clear_black_24dp"
             android:text="@string/ClearButton" />
     </ScrollView>
+
+
+    <TextView
+        android:id="@+id/tvRespuesta"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <ImageView
         android:id="@+id/ivRespuesta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <TextView
-        android:id="@+id/tvRespuesta"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+    <ImageView
+        android:id="@+id/ivRespuestaSTP2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ivRespuestaLig"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ivRespuestaSTP1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ivRespuestaTemp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        android:id="@+id/ivRespuestaHum"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/color"
